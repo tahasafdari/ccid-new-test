@@ -1,0 +1,69 @@
+## Group Activities
+
+> Work in group to solve these tasks.
+
+## Activity 1/2
+
+### Preparing a new project
+
+1. Clone this [repository](https://github.com/TX00DZ37-3006/activity1m). Note that the repository will be visible during the group activity
+2. Create a new empty GitHub repository.
+3. Open the project in VSCode, launch the terminal and link the cloned repo to the GitHub repository [according to the instructions] (https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories#changing-a-remote-repositorys-url).
+4. Install the project's base dependencies with the `npm install` command.
+5. Start development mode by running the `npm start` command.
+6. Go to [http://localhost:3000](http://localhost:3000) in your browser.
+   This page will automatically reload after saving changes to the project files.
+
+### Deploy
+
+The production version of the project will automatically be built,
+and deployed to GitHub Pages, in the `gh-pages` branch, every time the `main`
+branch is updated. For example, after a direct push or an accepted pull request.
+To do this, you need to edit the `homepage` field in the `package.json` file,
+replacing `your_username` and `your_repo_name` with your own, and submit the
+changes to GitHub.
+
+```json
+"homepage": "https://your_username.github.io/your_repo_name/"
+```
+
+Next, you need to go to the settings of the GitHub repository (`Settings` > `Pages`) and set the distribution of the production version of files from the `/root` folder of the `gh-pages` branch, if this was not done automatically.
+
+### Deployment status
+
+The deployment status of the latest commit is displayed with an icon next to its ID.
+
+- **Yellow color** - the project is being built and deployed.
+- **Green color** - deployment completed successfully.
+- **Red color** - an error occurred during linting, build or deployment.
+
+More detailed information about the status can be viewed by clicking on the icon, and in the drop-down window, follow the link `Details`.
+
+### Live page
+
+After some time, usually a couple of minutes, the live page can be viewed at the address specified in the edited `homepage` property.
+
+If a blank page opens, make sure there are no errors in the `Console` tab related to incorrect paths to the CSS and JS files of the project (**404**). You most likely have the wrong value for the `homepage` property in the `package.json` file.
+
+### Routing
+
+If your application uses the `react-router-dom` library for routing, you must
+additionally configure the `<BrowserRouter>` component by passing the exact name of your repository in the `basename` prop. Slashes at the beginning and end of the line are required.
+
+```jsx
+<BrowserRouter basename='/your_repo_name/'>
+  <App />
+</BrowserRouter>
+```
+
+### How it works
+
+1. After each push to the `main` branch of the GitHub repository, a special script (GitHub Action) is launched from the `.github/workflows/deploy.yml` file.
+2. All repository files are copied to the server, where the project is initialized and linted and built before deployment.
+3. If all steps are successful, the built production version of the project files is sent to the `gh-pages` branch. Otherwise, the script execution log will indicate what the problem is.
+
+## Activity 2/2
+
+- Discuss how the code in `src/App-new.js` works
+- Add some styles to the `Counter` component.
+- Deploy to GitHub pages using GitHub action
